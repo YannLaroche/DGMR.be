@@ -1,0 +1,52 @@
+# basics
+pandas
+numpy
+matplotlib
+jupyter
+
+# RMI server
+filezilla
+
+# pysteps (inspired by Michiels' env.yml)
+pysteps
+black
+cartopy
+cfgrib
+codecov
+cython
+dask
+h5netcdf
+h5py
+ipython
+jsmin
+jsonschema
+netcdf4
+opencv-python
+pillow
+pre_commit
+pyfftw
+pygrib
+pyproj
+pytest
+pytest-cov
+pywavelets
+rasterio
+scikit-image
+scipy
+xarray
+xesmf >=0.7
+#esmpy
+xradar
+wradlib
+xskillscore
+
+
+# DGMR (inspired from dgmr github repo)
+dgmr
+torch
+torchvision>=0.11.0
+pytorch_lightning
+einops
+huggingface_hub
+antialiased_cnns
+pytorch_msssim
