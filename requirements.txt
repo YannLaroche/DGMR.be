@@ -50,3 +50,4 @@ einops
 huggingface_hub
 antialiased_cnns
 pytorch_msssim
+datasets
