@@ -1,4 +1,4 @@
-'''Code from Simon De Kock'''
+'''Code by Simon De Kock <simon.de.kock@vub.be>'''
 
 import numpy as np
 import os
