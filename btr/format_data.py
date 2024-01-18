@@ -1,8 +1,8 @@
 import numpy as np
-from torch import from_numpy
+from torch import from_numpy, Tensor
 from xarray import DataArray
 
-def prep(field: DataArray):
+def prep(field: DataArray) -> Tensor:
     '''
     - Crop xarray data to required dimensions (700x700 to 256x256)
     - Reshape it to:
