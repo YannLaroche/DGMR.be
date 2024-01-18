@@ -13,7 +13,7 @@ def get_data_as_xarray(data_folder=DATAFILE):
     datasets = []
     
     fns = os.listdir(data_folder)
-    for i,filename in enumerate(data_folder):
+    for i,filename in enumerate(fns):
         fns[i] = f"{data_folder}/{filename}"
 
     for file_name in fns:

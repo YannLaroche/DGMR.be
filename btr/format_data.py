@@ -14,8 +14,8 @@ def prep(field: DataArray) -> Tensor:
     '''
     # Crop the center of the field and get a 256x256 image
     # Intervals of +/- 256/2 around the center (which is 700/2)
-    low = (700/2) - (256/2)
-    high = (700/2) - (256/2)
+    low = (700//2) - (256//2)
+    high = (700//2) + (256//2)
     cropped = field[:, low:high, low:high]
     
     # Passing a tuple to expand_dims leads to
