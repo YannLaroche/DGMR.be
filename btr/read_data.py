@@ -3,13 +3,18 @@
 import numpy as np
 import os
 import pandas as pd
+from btr.params import *
 import pyproj
 from wradlib.io import read_opera_hdf5
 import xarray as xr
 
 
-def read_hdf5_to_xarray(fns):
+def get_data_as_xarray(data_folder=DATAFILE):
     datasets = []
+    
+    fns = os.listdir(data_folder)
+    for i,filename in enumerate(data_folder):
+        fns[i] = f"{data_folder}/{filename}"
 
     for file_name in fns:
         # Read the content
