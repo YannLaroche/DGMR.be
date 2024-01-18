@@ -22,6 +22,7 @@ raw_data/
 *.csv
 *.sqlite
 *.zip
+*.pt
 
 # Data in the package
 # Add files you want to include in the git repo using `git add -f file_name`
@@ -31,6 +32,7 @@ data/
 models/
 *.joblib
 *.h5
+*.bin
 
 # Any pickle files
 *.pickle
