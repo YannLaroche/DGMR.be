@@ -3,6 +3,7 @@ from btr.model import get_pretrained
 from btr.read_data import get_data_as_xarray
 from datetime import date
 import numpy as np
+import tqdm
 
 def create_ensemble(n_members = 50):
     data = get_data_as_xarray()
@@ -10,8 +11,8 @@ def create_ensemble(n_members = 50):
     
     model = get_pretrained()
     ensemble = []
-    
-    for i in range(n_members):
+    print('Creating ensemble:')
+    for i in tqdm(range(n_members)):
         output = model(input[:,:4])
         ensemble.append(output)
     
