@@ -1,0 +1,26 @@
+from btr.format_data import prep
+from btr.model import get_pretrained
+from btr.read_data import get_data_as_xarray
+from datetime import date
+import numpy as np
+
+def create_ensemble(n_members = 50):
+    data = get_data_as_xarray()
+    input = prep(data['precip_intensity'])
+    
+    model = get_pretrained()
+    ensemble = []
+    
+    for i in range(n_members):
+        output = model(input[:,:4])
+        ensemble.append(output)
+    
+    ensemble = np.concatenate(ensemble)
+    
+    return ensemble
+
+if __name__ == '__main___':
+    ensemble = create_ensemble(25)
+    datestamp = date.today()
+    np.save(f'../outputs/ensembles/{datestamp}-{ensemble.shape[0]}.npy', ensemble)
+    
