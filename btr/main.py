@@ -3,7 +3,7 @@ from btr.model import get_pretrained
 from btr.read_data import get_data_as_xarray
 from datetime import date
 import numpy as np
-import tqdm
+from tqdm import tqdm
 
 def create_ensemble(n_members = 50):
     data = get_data_as_xarray()
@@ -20,8 +20,8 @@ def create_ensemble(n_members = 50):
     
     return ensemble
 
-if __name__ == '__main___':
-    ensemble = create_ensemble(25)
+if __name__ == '__main__':
+    ensemble = create_ensemble(5)
     datestamp = date.today()
     np.save(f'../outputs/ensembles/{datestamp}-{ensemble.shape[0]}.npy', ensemble)
     
