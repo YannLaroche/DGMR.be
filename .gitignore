@@ -16,6 +16,9 @@
 # Ignore VS Code generated files
 *.vscode
 
+# Outputs
+outputs/
+
 # Raw data
 data/
 raw_data/
