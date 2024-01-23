@@ -33,5 +33,3 @@ def plot_subplot(input, output, figsize=None,
     plt.colorbar(im2, ax=axes[1, i])
   
   return None
-    
-  
