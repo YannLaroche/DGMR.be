@@ -1,9 +1,10 @@
 import matplotlib
 from matplotlib import animation
 import matplotlib.pyplot as plt
+import numpy as np
 
 def plot_animation(field, figsize=None,
-                   vmin=0, vmax=10, cmap="jet", **imshow_args):
+                   cmap="jet", **imshow_args):
   
   matplotlib.rc('animation', html='jshtml')
   
@@ -11,10 +12,18 @@ def plot_animation(field, figsize=None,
   ax = plt.axes()
   ax.set_axis_off()
   plt.close() # Prevents extra axes being plotted below animation
+  vmax = np.max(field[0, 0, 0])
+  vmin = np.min(field[0, 0, 0])
   img = ax.imshow(field[0, 0, 0], vmin=vmin, vmax=vmax, cmap=cmap, **imshow_args)
+  cb = fig.colorbar(img, ax=ax)
+  tx = ax.set_title('Frame 0')
 
   def animate(frame):
     img.set_data(field[0, frame, 0])
+    vmax     = np.max(field[0, frame, 0])
+    vmin     = np.min(field[0, frame, 0])
+    img.set_clim(vmin, vmax)
+    tx.set_text(f'Frame {frame}')
     return (img,)
 
   return animation.FuncAnimation(
