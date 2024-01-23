@@ -22,7 +22,7 @@ def create_ensemble(n_members = 50):
     return ensemble
 
 if __name__ == '__main__':
-    ensemble = create_ensemble(50)
+    ensemble = create_ensemble(100)
     filename = f'{OUTPUTFILE}/ensembles/{date.today()}_{ensemble.shape[0]}.npy'
     np.save(filename, ensemble)
     print(f'\n\nYour ensemble has been saved at {filename}!')
