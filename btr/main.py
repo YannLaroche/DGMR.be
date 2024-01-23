@@ -12,7 +12,7 @@ def create_ensemble(n_members = 50):
     
     model = get_pretrained()
     ensemble = []
-    print('Creating ensemble:')
+    print('Creating ensemble:\n~~~~~~~~~~~~~~~~~\n')
     for i in tqdm(range(n_members)):
         output = model(input[:,:4])
         ensemble.append(output.detach().numpy())
@@ -22,7 +22,8 @@ def create_ensemble(n_members = 50):
     return ensemble
 
 if __name__ == '__main__':
-    ensemble = create_ensemble(5)
-    filename = f'{OUTPUTFILE}/ensembles/{date.today()}-{ensemble.shape[0]}.npy'
+    ensemble = create_ensemble(50)
+    filename = f'{OUTPUTFILE}/ensembles/{date.today()}_{ensemble.shape[0]}.npy'
     np.save(filename, ensemble)
+    print(f'\n\nYour ensemble has been saved at {filename}!')
     
