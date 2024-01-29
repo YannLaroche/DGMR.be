@@ -1,3 +1,4 @@
+import netCDF4
 import numpy as np
 from torch import from_numpy, Tensor
 from xarray import DataArray
@@ -25,3 +26,40 @@ def prep(field: DataArray) -> Tensor:
     input_tensor = from_numpy(expanded)
     
     return input_tensor
+
+def create_necdf(in_fn, model_name, n_members,
+                 out_dir='/home/yann/Documents/BTR/DGMR.be/outputs/ensembles/'):
+    output = np.load(in_fn)
+    out_fn = f'{out_dir}ensemble_{model_name}_{n_members}.nc'
+    
+    ds = netCDF4.Dataset(out_fn, 'w')
+    if model_name.lower() == 'dgmr':
+        output = np.expand_dims(output, 0)
+        dim_sample = ds.createDimension('sample', output.shape[0])
+        dim_member = ds.createDimension('member', output.shape[1])
+        dim_time = ds.createDimension('time', output.shape[2])
+        dim_channel = ds.createDimension('channel', output.shape[3])
+        dim_lon = ds.createDimension('lon', output.shape[4])
+        dim_lat = ds.createDimension('lat', output.shape[5])
+    
+    if model_name.lower() == 'ldcast':
+        output = np.expand_dims(output, 0)
+        shape = output.shape
+        output = np.reshape(output, 
+                            (shape[1], shape[5], shape[2],
+                                shape[0], shape[3], shape[4]))
+        dim_sample = ds.createDimension('sample', output.shape[0])
+        dim_member = ds.createDimension('member', output.shape[1])
+        dim_time = ds.createDimension('time', output.shape[2])
+        dim_channel = ds.createDimension('channel', output.shape[3])
+        dim_lon = ds.createDimension('lon', output.shape[4])
+        dim_lat = ds.createDimension('lat', output.shape[5])
+        
+    var = ds.createVariable(
+            'precip_intensity', output.dtype,
+            ('sample', 'member', 'time', 
+             'channel', 'lon', 'lat')
+        )
+        
+    var[:] = output
+    ds.close()
