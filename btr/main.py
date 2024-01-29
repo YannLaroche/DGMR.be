@@ -1,4 +1,4 @@
-from btr.format_data import prep
+from btr.format_data import prep, create_necdf
 from btr.model import get_pretrained
 from btr.params import *
 from btr.read_data import get_data_as_xarray
@@ -22,8 +22,10 @@ def create_ensemble(n_members = 50):
     return ensemble
 
 if __name__ == '__main__':
-    ensemble = create_ensemble(100)
-    filename = f'{OUTPUTFILE}/ensembles/{date.today()}_{ensemble.shape[0]}.npy'
-    np.save(filename, ensemble)
-    print(f'\n\nYour ensemble has been saved at {filename}!')
+    # ensemble = create_ensemble(100)
+    # filename = f'{OUTPUTFILE}/ensembles/{date.today()}_{ensemble.shape[0]}.npy'
+    # np.save(filename, ensemble)
+    # print(f'\n\nYour ensemble has been saved at {filename}!')
     
+    filepath = f'{OUTPUTFILE}/ensembles/2024-01-23_50.npy'
+    create_necdf(filepath, 'dgmr', 50)
