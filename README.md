@@ -1,5 +1,5 @@
 # DGMR.be
-Implementing the DGMR model as a nowcasting solution over Belgium.
+Implementing the DGMR model as a nowcasting solution over Belgium, using the version of DGMR accessible through HuggingFace. See following repository: openclimatefix/skillful_nowcasting
 
 **Data:** RMI radar data
 
